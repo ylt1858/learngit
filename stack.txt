@@ -1,0 +1,74 @@
+package mtsql;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class sql {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        //泛型数组大小为100可以设置大小
+        Stacks<String> s=new Stacks<String>(100);
+        int pos=1;
+        while (true){
+            System.out.println("请输入你想要进行的"+(pos++)+"操作：push top pop");
+            String a=sc.nextLine();
+            if(a.equals("push")){
+                System.err.println("请输入元素；");
+               String str=sc.nextLine();
+                s.push(str);
+            }
+            else if(a.equals("top")){
+                System.err.println("当前栈顶元素为："+s.top());
+            }
+            else if(a.equals("pop")){
+                System.err.println("删除当前栈顶元素："+s.top());
+                s.pop();
+            }
+            else if(a.equals("end")){
+                break;
+            }
+            else {
+                --pos;
+                System.err.println("非定义操作 请输入push top pop");
+            }
+        }
+
+    }
+}
+
+class Stacks<T>{
+    public T[] arr;
+    private int num=0;
+
+    public Stacks(int size){//泛型数组设置
+        arr=(T[])new Object[size+1];
+    }
+    public void push(T a){
+        arr[++num]=a;
+    }
+    public T top(){
+        return arr[num];
+    }
+    public void pop(){
+        if(num>0){
+         num--;
+        }
+    }
+}
+
+class myStack<T>{//字符串数组模拟
+   public T nu;
+   int num=0;
+   public String [] arr=new String[100];
+   public void push(String str){
+       arr[num++]=str;
+   }
+   public String top(){
+       return arr[num-1];
+   }
+   public void pop(){
+       if (num>0){
+        --num;
+       }
+   }
+}
